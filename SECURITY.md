@@ -4,11 +4,13 @@
 
 | Issue | Behavior |
 | --- | --- |
-| `coverWidth(100n, 50n, 200n)` | `2/1` |
-| `coverWidth(100n, 80n, 150n)` | `3/2` |
-| `coverWidth(100n, 40n, 120n)` | `5/2` |
-| Low ≥ entry | not ok |
+| `coverWidth(100n, 50n, 200n)` | `2/1`, side `high` |
+| `coverWidth(100n, 80n, 150n)` | `3/2`, side `high` |
+| `coverWidth(100n, 40n, 120n)` | `5/2`, side `low` |
+| Low ≥ entry or high ≤ entry | not ok |
+| Non-positive prices | not ok |
 | Fraction | reduced by gcd |
+| `priceInsideBand` edges | inclusive; inverted band throws |
 
 ## Not closed (production)
 
@@ -24,7 +26,8 @@
 1. Calling this an Alcor tick range.  
 2. Treating width `2/1` as proof the position earns fees.  
 3. Mixing with [IL heat map](https://github.com/pixel-journey/wax-lp-impermanent-loss-heat-map) without noting full-range vs band.  
-4. Claiming a live position was optimized.
+4. Claiming a live position was optimized.  
+5. Fetching `/api/v3/market/pools` to "finish" the pure fraction.
 
 ## Honesty limits
 
